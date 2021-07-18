@@ -1,0 +1,193 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: #262626;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+input,
+textarea {
+	border: none;
+	outline: none;
+}
+
+button {
+	background-color: unset;
+	border: none;
+	cursor: pointer;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+}
+
+.row.align-start {
+	align-items: flex-start;
+}
+
+.row.start {
+	justify-content: flex-start;
+}
+
+.row.space-between {
+	justify-content: space-between;
+}
+
+.row.center {
+	justify-content: center;
+}
+
+body {
+	width: 100vw;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fafafa;
+	padding: 50px 0;
+	overflow-x: hidden;
+}
+
+#app {
+	width: 614px;
+	background-color: #fff;
+	border: 1px solid #efefef;
+	border-radius: 4px;
+}
+
+section.head {
+	padding: 16px;
+	border-bottom: 1px solid #efefef;
+}
+
+.profile-img {
+	object-fit: cover;
+	width: 32px;
+	height: 32px;
+	border-radius: 100%;
+	margin-right: 14px;
+}
+
+.profile-name {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.more-menu-btn {
+	font-weight: 800;
+	font-size: 16px;
+	letter-spacing: -0.01em;
+}
+
+section.image {
+	width: 100%;
+	height: 750px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+section.image ul.image-container {
+	transition: transform 0.3s ease-out;
+	height: 100%;
+}
+
+section.image ul.image-container li.content-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 100%;
+	max-width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+section.bottom {
+	padding: 8px 16px;
+	border-bottom: 1px solid #efefef;
+}
+
+section.bottom .like {
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+section.bottom .row.like .heart {
+	font-size: 16px;
+	margin-right: 8px;
+	cursor: pointer;
+	user-select: none;
+}
+
+section.bottom .row.content {
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+section.bottom .content .name {
+	font-weight: 600;
+	margin-right: 8px;
+}
+
+section.bottom ul.comment {
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+section.bottom ul.comment li {
+	margin-bottom: 4px;
+}
+
+section.bottom ul.comment li:last-child {
+	margin-bottom: 0;
+}
+
+section.bottom ul.comment .comment-user {
+	font-weight: 600;
+	margin-right: 8px;
+}
+
+section.bottom .more-comments-btn {
+	transition: color 0.2s;
+	color: #666;
+}
+section.bottom .more-comments-btn:hover {
+	color: #262626;
+}
+
+section.input {
+	position: relative;
+	padding: 4px;
+	letter-spacing: -0.01em;
+}
+
+section.input input {
+	border: none;
+	width: 100%;
+	font-size: 14px;
+	padding: 12px 40px 12px 12px;
+	resize: none;
+	overflow-y: hidden;
+}
+
+section.input .comment-submit-btn {
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: opacity 0.2s;
+	color: #0095f6;
+	opacity: 0.75;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+section.input .comment-submit-btn.active {
+	opacity: 1;
+}

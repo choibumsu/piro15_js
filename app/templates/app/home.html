@@ -1,0 +1,67 @@
+{% extends "app/base.html" %} {% load static %} {% block content %}
+
+<div id="app">
+	<section class="head row space-between">
+		<div class="row">
+			<img src="{{ profile }}" class="profile-img" alt="profile" />
+			<div class="profile-name">{{ name }}</div>
+		</div>
+		<button class="more-menu-btn">···</button>
+	</section>
+	<section class="image">
+		<ul class="image-container row align-start">
+			{% for content_image in content_images %}
+			<li
+				class="content-img"
+				data-index="{{ forloop.counter0 }}"
+				style="background-image: url('{{ content_image }}');"
+				alt=""
+			></li>
+			{% endfor %}
+		</ul>
+	</section>
+	<section class="bottom">
+		<div class="like row start">
+			{% if is_like %}
+			<div class="heart" data-like="true">❤️</div>
+			{% else %}
+			<div class="heart" data-like="false">🤍</div>
+			{% endif %}
+			<span>
+				좋아요
+				<span class="like-count">{{ like }}</span>개
+			</span>
+		</div>
+		<div class="content row">
+			<span class="name">{{ name }}</span>
+			<span class="content">{{ content }}</span>
+		</div>
+		<ul class="comment">
+			{% for comment in comments %}
+			<li class="comment row" data-id="{{ comment.id }}">
+				<span class="comment-user">{{ comment.user }}</span>
+				<span class="comment-text">{{ comment.text }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+		<button class="more-comments-btn">댓글 더보기</button>
+	</section>
+	<section class="input row">
+		<input id="comment-input" type="text" placeholder="댓글 달기..." />
+		<button class="comment-submit-btn">게시</button>
+	</section>
+</div>
+
+<script>
+	window.data = {
+		isLike: '{{ is_like }}' === 'True',
+	}
+
+	window.urls = {
+		getCommentsApi: '{% url "app:get_comments_api" %}',
+		postCommentApi: '{% url "app:post_comment_api" %}',
+		postLikeApi: '{% url "app:post_like_api" %}',
+	}
+</script>
+
+{% endblock %}
