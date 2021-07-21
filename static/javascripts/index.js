@@ -67,19 +67,20 @@ class App {
 		this.$imageContainer.style.transform = `translateX(${swipeX}px)`
 	}
 
-	async getComments() {
-		try {
-			const { status, data } = await fetchGET(urls.getCommentsApi)
-			if (status !== 200) {
-				alert('ERROR')
-				return
-			}
-
-			this.addComments(data.comments)
-			this.$moreCommentsBtn.remove()
-		} catch (err) {
-			alert(err)
+	checkFetchOk(status) {
+		if (status !== 200) {
+			alert('ERROR')
+			return false
 		}
+		return true
+	}
+
+	async getComments() {
+		const { status, data } = await fetchGET(urls.getCommentsApi)
+		if (!this.checkFetchOk(status)) return
+
+		this.addComments(data.comments)
+		this.$moreCommentsBtn.remove()
 	}
 
 	addComments(comments) {
@@ -110,44 +111,28 @@ class App {
 	async submitComment() {
 		if (!this.validateComment()) return
 
-		try {
-			const text = this.$commentInput.value
-			const { status, data } = await fetchPOST(urls.postCommentApi, {
-				comment: text,
-				user,
-			})
+		const text = this.$commentInput.value
+		const { status, data } = await fetchPOST(urls.postCommentApi, {
+			comment: text,
+			user,
+		})
+		if (!this.checkFetchOk(status)) return
 
-			if (status !== 200) {
-				alert('ERROR')
-				return
-			}
-
-			this.addComments([{ text, user, id: data.id }])
-			this.$commentInput.value = ''
-		} catch (err) {
-			alert(err)
-		}
+		this.addComments([{ text, user, id: data.id }])
+		this.$commentInput.value = ''
 	}
 
 	async submitLike() {
 		const currentIsLike = this.$heart.dataset.like === 'true'
 		const newIsLike = !currentIsLike
 
-		try {
-			const { status, data } = await fetchPOST(urls.postLikeApi, {
-				is_like: newIsLike,
-			})
+		const { status, data } = await fetchPOST(urls.postLikeApi, {
+			is_like: newIsLike,
+		})
+		if (!this.checkFetchOk(status)) return
 
-			if (status !== 200) {
-				alert('ERROR')
-				return
-			}
-
-			this.$heart.innerText = newIsLike ? LIKE_HEART : UNLIKE_HEART
-			this.$heart.dataset.like = newIsLike
-			this.$likeCount.innerText = data.likes
-		} catch (err) {
-			alert(err)
-		}
+		this.$heart.innerText = newIsLike ? LIKE_HEART : UNLIKE_HEART
+		this.$heart.dataset.like = newIsLike
+		this.$likeCount.innerText = data.likes
 	}
 }
