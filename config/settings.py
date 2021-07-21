@@ -27,8 +27,8 @@ SECRET_KEY = 'i%p@d%l2*b0q(bl&j_p4y69^+6mu1dg%)7^-ozrpy_1^uc)mna'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1:8000',
-    'localhost:8000',
+    '127.0.0.1',
+    'localhost',
     'choiteemo.pythonanywhere.com'
 ]
 
