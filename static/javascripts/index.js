@@ -84,15 +84,15 @@ class App {
 
 	addComments(comments) {
 		comments.forEach((comment) => {
-			const $newComment = document.createElement('li')
-			$newComment.classList.add('comment')
-			$newComment.classList.add('row')
-			$newComment.dataset.id = comment.id
-
-			$newComment.innerHTML = /* html */ `
-        <span class="comment-user">${comment.user}</span>
-        <span class="comment-text">${comment.text}</span>
+			const $newCommentParent = document.createElement('div')
+			$newCommentParent.innerHTML = /* html */ `
+				<li class="comment row" data-id="${comment.id}">
+					<span class="comment-user">${comment.user}</span>
+					<span class="comment-text">${comment.text}</span>
+				</li>
       `
+
+			const $newComment = $newCommentParent.firstElementChild
 			this.$commentContainer.appendChild($newComment)
 		})
 	}
