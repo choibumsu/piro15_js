@@ -5,9 +5,24 @@ export async function fetchGET(url, params = {}) {
 		const response = await fetch(requestUrl, {
 			method: 'GET',
 		})
-		return processResponse(response)
+
+		if (response.status !== 200) {
+			throw response
+		}
+
+		const data = await response.json()
+
+		return {
+			status: response.status,
+			data,
+		}
 	} catch (e) {
-		return processError(e)
+		console.error(e)
+
+		return {
+			status: e.status ? e.status : null,
+			data: null,
+		}
 	}
 }
 
@@ -21,14 +36,7 @@ export async function fetchPOST(url, params = {}) {
 			},
 			body: JSON.stringify(params),
 		})
-		return processResponse(response)
-	} catch (e) {
-		return processError(e)
-	}
-}
 
-async function processResponse(response) {
-	try {
 		if (response.status !== 200) {
 			throw response
 		}
@@ -40,15 +48,11 @@ async function processResponse(response) {
 			data,
 		}
 	} catch (e) {
-		return processError(e)
-	}
-}
+		console.error(e)
 
-function processError(e) {
-	console.error(e)
-
-	return {
-		status: e.status ? e.status : null,
-		data: null,
+		return {
+			status: e.status ? e.status : null,
+			data: null,
+		}
 	}
 }

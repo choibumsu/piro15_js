@@ -1,5 +1,16 @@
-{% extends "app/base.html" %} {% load static %} {% block content %}
-
+{% extends "app/base.html" %}
+<!-- -->
+{% load static %}
+<!-- -->
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+{% endblock %}
+<!-- -->
+{% block script %}
+<script type="module" src="{% static 'javascripts/index.js' %}"></script>
+{% endblock %}
+<!-- -->
+{% block main %}
 <div id="app">
 	<section class="head row space-between">
 		<div class="row">
@@ -53,6 +64,9 @@
 </div>
 
 <script>
+	window.csrfToken = '{{ csrf_token }}'
+	window.user = '{{ user }}'
+
 	window.data = {
 		isLike: '{{ is_like }}' === 'True',
 	}
