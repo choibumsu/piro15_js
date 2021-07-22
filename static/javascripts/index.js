@@ -25,11 +25,11 @@ class App {
 
         // // TODO: #2-1 START
         // this.$moreCommentsBtn = document.querySelector('button.more-comments-btn')
-        // // TODO: #2-2 END
+        // // TODO: #2-1 END
 
-        // // TODO: #2-6 START
+        // // TODO: #2-5 START
         // this.$commentContainer = document.querySelector('ul.comment')
-        // // TODO: #2-6 END
+        // // TODO: #2-5 END
 
         // // TODO: #3-1 START
         // this.$commentInput = document.querySelector('input#comment-input')
@@ -43,9 +43,9 @@ class App {
         // this.$heart = document.querySelector('.heart')
         // // TODO: #4-1 END
 
-        // // TODO: #4-4 START
+        // // TODO: #4-5 START
         // this.$likeCount = document.querySelector('.like-count')
-        // // TODO: #4-4 END
+        // // TODO: #4-5 END
     }
 
     /**
@@ -102,13 +102,13 @@ class App {
     //
     //     if ($newImage === null) return
     //
-    //     const swipeX = imageWidth * +$newImage.dataset.index * -1
+    //     const swipeX = imageWidth * -$newImage.dataset.index
     //     this.$imageContainer.style.transform = `translateX(${swipeX}px)`
     // }
     //
     // // TODO: #1-3 END
 
-    // // TODO: #2-4 START
+    // // TODO: #2-6 START
     // checkFetchOk(status) {
     //     if (status !== 200) {
     //         alert('ERROR')
@@ -117,20 +117,20 @@ class App {
     //     return true
     // }
     //
-    // // TODO: #2-4 END
+    // // TODO: #2-6 END
 
     // // TODO: #2-3 START
     // async getComments() {
     //     const {status, data} = await fetchGET(urls.getCommentsApi)
     //     if (!this.checkFetchOk(status)) return
     //
-    //     this.addComments(data.comments)
     //     this.$moreCommentsBtn.remove()
+    //     this.addComments(data.comments)
     // }
     //
     // // TODO: #2-3 END
 
-    // // TODO: #2-5 START
+    // // TODO: #2-4 START
     // addComments(comments) {
     //     comments.forEach((comment) => {
     //         const $newCommentParent = document.createElement('div')
@@ -146,7 +146,7 @@ class App {
     //     })
     // }
     //
-    // // TODO: #2-5 END
+    // // TODO: #2-4 END
 
     // // TODO: #3-5 START
     // validateComment() {
@@ -188,17 +188,24 @@ class App {
     //     })
     //     if (!this.checkFetchOk(status)) return
     //
-    //     this.$heart.innerText = newIsLike ? LIKE_HEART : UNLIKE_HEART
+    //     this.setHeart(newIsLike)
     //     this.setLikes(data.likes)
     // }
     //
     // // TODO: #4-3 END
 
-    // // TODO: #4-5 START
-    // setLikes() {
-    //     this.$heart.dataset.like = newIsLike
-    //     this.$likeCount.innerText = data.likes
+    // // TODO: #4-4 START
+    // setHeart(isLike) {
+    //     this.$heart.innerText = isLike ? LIKE_HEART : UNLIKE_HEART
+    //     this.$heart.dataset.like = isLike
     // }
     //
-    // // TODO: #4-5 END
+    // // TODO: #4-4 START
+
+    // // TODO: #4-6 START
+    // setLikes(likes) {
+    //     this.$likeCount.innerText = likes
+    // }
+    //
+    // // TODO: #4-6 END
 }
